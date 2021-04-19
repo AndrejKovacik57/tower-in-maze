@@ -1,7 +1,10 @@
 package sk.stuba.fei.uim.oop;
 
 import java.awt.*;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.Random;
 import javax.swing.JPanel;
 
 
@@ -11,54 +14,118 @@ public class Maze extends JPanel {
     private int rows;
     private int columns;
     private int cellSize;
-    private ArrayList<Cell>[][] maze = new ArrayList[10][10];
+    private ArrayList<Cell>[][]maze;
+    private Random rand=new Random();
+    Deque<Cell> stack = new ArrayDeque<Cell>();
 
     public Maze(int size, int rowColNum){
-        System.out.println("konstruktor maze");
+
         this.size=size;
         this.rows=rowColNum;
         this.columns=rowColNum;
         this.cellSize=size/rowColNum;
-
         createMaze();
-        createPanel();
+        createMazePanel();
 
     }
 
     public void createMaze(){
-        System.out.println("create maze size "+size+" col "+columns+", row "+rows);
+
         maze = new ArrayList[columns][rows];
         for (int x=0; x<columns;x++){
-            System.out.println("add cell for 1");
+
             for (int y=0; y<rows;y++){
-                //maze.add(new Cell(false,true,true,true,true,x,y,size/rows));
                 maze[x][y]=new ArrayList<Cell>();
                 maze[x][y].add(new Cell(false,true,true,true,true,x,y,size/rows));
-                System.out.println("add cell for 2");
+
 
             }
         }
-    }
-    /*public Cell findCell(int x,int y){
+        recursiveRandomDFS(maze[0][0].get(0));
 
-        for(Cell cell: maze){
-            if(cell.getXIndex()==x && cell.getYIndex()==y){
-                return cell;
-            }
+    }
+    public Cell checkIndex(int x, int y){
+        if(x>=0 && y>=0 && x<columns && y<rows ){
+            return maze[x][y].get(0);
         }
         return null;
-    }*/
-    public void recursiveRandomDFS(int x,int y){
-        //findCell(x,y).setVisited(true);
+    }
+    public ArrayList<Cell> getNeighbours(int x, int y){
+        var neighbours = new ArrayList<Cell>();
 
+        var topNeigbour= checkIndex(x,y-1);
+        var bottomNeigbour= checkIndex(x,y+1);
+        var leftNeigbour= checkIndex(x-1, y);
+        var rightNeigbour= checkIndex(x+1, y);
 
+        if(topNeigbour!=null && !topNeigbour.isVisited()){
+            neighbours.add(topNeigbour);
+
+        }
+        if(bottomNeigbour!= null && !bottomNeigbour.isVisited()){
+            neighbours.add(bottomNeigbour);
+        }
+        if(leftNeigbour!=null && !leftNeigbour.isVisited()){
+            neighbours.add(leftNeigbour);
+        }
+        if(rightNeigbour!=null && !rightNeigbour.isVisited()){
+            neighbours.add(rightNeigbour);
+        }
+
+        return neighbours;
     }
 
-    public void createPanel(){
-        this.setPreferredSize(new Dimension(size+(columns+1)*gridSize,size+(rows+1)*gridSize));
-        this.setBackground(Color.GREEN);
-        this.setVisible(true);
+    public void removeWalls(int currentX,int currentY,int nextX,int nextY){
+        if(currentX-nextX==0 && currentY-nextY==1){
+            maze[currentX][currentY].get(0).setTopWall(false);
+            maze[nextX][nextY].get(0).setBottomWall(false);
+        }
+        if(currentX-nextX==0 && currentY-nextY==-1){
+            maze[currentX][currentY].get(0).setBottomWall(false);
+            maze[nextX][nextY].get(0).setTopWall(false);
+        }
+        if(currentX-nextX==1 && currentY-nextY==0){
+            maze[currentX][currentY].get(0).setLeftWall(false);
+            maze[nextX][nextY].get(0).setRightWall(false);
+        }
+        if(currentX-nextX==-1 && currentY-nextY==0){
+            maze[currentX][currentY].get(0).setRightWall(false);
+            maze[nextX][nextY].get(0).setLeftWall(false);
+        }
+
+    }
+    public Cell randomNeighbour(ArrayList<Cell> neighbours){
+        if(neighbours.size()>=1){
+            return neighbours.get(rand.nextInt(neighbours.size()));
+        }
+        else{
+            return null;
+        }
+    }
+
+    public void recursiveRandomDFS(Cell current){
+        current.setVisited(true);
+        ArrayList<Cell> cellNeighbours= new ArrayList<Cell>();
+        cellNeighbours=getNeighbours(current.getXIndex(),current.getYIndex());
+        Cell nextCell = randomNeighbour(cellNeighbours);
+        while (nextCell!=null){
+            //stack.push(current);
+            removeWalls(current.getXIndex(),current.getYIndex(),nextCell.getXIndex(),nextCell.getYIndex());
+            recursiveRandomDFS(nextCell);
+            cellNeighbours=getNeighbours(current.getXIndex(),current.getYIndex());
+            nextCell = randomNeighbour(cellNeighbours);
+        }
+
+        System.out.println("koniec dfs");
+    }
+
+
+
+    public void createMazePanel(){
+        this.setBackground(Color.RED);
+        this.setSize(size+(columns+1)*gridSize,size+(rows+1)*gridSize);
         this.setLocation(100,100 );
+        this.setVisible(true);
     }
 
     @Override
@@ -66,16 +133,14 @@ public class Maze extends JPanel {
         Graphics2D g2D = (Graphics2D)g;
         g2D.setColor(Color.BLACK);
         g2D.setStroke(new BasicStroke(gridSize));
-        System.out.println("maze paint");
-
         for (int x=0; x<columns;x++){
-            System.out.println("add cell for 1");
+
             for (int y=0; y<rows;y++){
                 if(maze[x][y].get(0).isTopWall()){
-                    g2D.drawLine(maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize+1, maze[x][y].get(0).getXIndex()*cellSize+cellSize, maze[x][y].get(0).getYIndex()*cellSize+1);
+                    g2D.drawLine(maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize, maze[x][y].get(0).getXIndex()*cellSize+cellSize, maze[x][y].get(0).getYIndex()*cellSize);
                 }
                 if(maze[x][y].get(0).isBottomWall()){
-                    g2D.drawLine(maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize+cellSize+1, maze[x][y].get(0).getXIndex()*cellSize+cellSize, maze[x][y].get(0).getYIndex()*cellSize+cellSize+1);
+                    g2D.drawLine(maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize+cellSize, maze[x][y].get(0).getXIndex()*cellSize+cellSize, maze[x][y].get(0).getYIndex()*cellSize+cellSize);
                 }
                 if(maze[x][y].get(0).isLeftWall()){
                     g2D.drawLine(maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize, maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize+cellSize);
@@ -86,9 +151,6 @@ public class Maze extends JPanel {
                 }
             }
         }
-
-
-
 
     }
 }

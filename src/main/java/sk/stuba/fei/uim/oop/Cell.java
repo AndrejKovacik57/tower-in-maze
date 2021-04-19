@@ -22,7 +22,6 @@ public class Cell{
         this.xIndex = xIndex;
         this.yIndex = yIndex;
         this.size = size;
-        System.out.println("create cell");
     }
 
     public boolean isVisited() {

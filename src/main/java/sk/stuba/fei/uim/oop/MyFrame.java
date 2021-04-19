@@ -14,16 +14,11 @@ public class MyFrame extends JFrame{
     }
     public void createFrame(){
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        this.setSize(this.size,this.size);
-        this.setLocation(0,0);
-
+        this.setSize(size,size);
+        this.getContentPane().setBackground(Color.BLUE);
         this.add(maze);
-
         this.setVisible(true);
 
 
     }
-
-
 }
