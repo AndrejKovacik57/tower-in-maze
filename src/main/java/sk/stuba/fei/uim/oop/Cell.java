@@ -12,8 +12,8 @@ public class Cell{
     private boolean rightWall;
     private int xIndex;
     private int yIndex;
-    private int size;
-    public Cell(boolean visited, boolean topWall, boolean bottomWall, boolean leftWall, boolean rightWall, int xIndex, int yIndex, int size) {
+
+    public Cell(boolean visited, boolean topWall, boolean bottomWall, boolean leftWall, boolean rightWall, int xIndex, int yIndex) {
         this.visited = visited;
         this.topWall = topWall;
         this.bottomWall = bottomWall;
@@ -21,7 +21,7 @@ public class Cell{
         this.rightWall = rightWall;
         this.xIndex = xIndex;
         this.yIndex = yIndex;
-        this.size = size;
+
     }
 
     public boolean isVisited() {
@@ -52,9 +52,7 @@ public class Cell{
         return yIndex;
     }
 
-    public int getSize() {
-        return size;
-    }
+
 
 
     public void setVisited(boolean visited) {
