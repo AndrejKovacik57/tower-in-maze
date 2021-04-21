@@ -1,25 +1,31 @@
 package sk.stuba.fei.uim.oop;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
-public class PlayerMovement  implements KeyListener {
+public class KeyboardMovement implements KeyListener {
     private int cellSize;
+    private int rowCol;
     private ArrayList<Cell>[][]maze;
     private Player player ;
+    private CreateMaze createMaze;
+    private PaintGamePanel paintGamePanel;
 
-
-    public PlayerMovement(int cellSize, ArrayList<Cell>[][] maze, Player player) {
+    public KeyboardMovement(int cellSize, int rowCol, Player player, CreateMaze createMaze, PaintGamePanel paintGamePanel) {
         this.cellSize = cellSize;
-        this.maze = maze;
+        this.rowCol=rowCol;
+        this.maze = createMaze.getMaze();
         this.player = player;
+        this.createMaze=createMaze;
+        this.paintGamePanel=paintGamePanel;
     }
 
 
 
     @Override
     public void keyTyped(KeyEvent e) {
+
+        maze=createMaze.getMaze();
         switch (e.getKeyChar()){
             case 'w':
 
@@ -47,7 +53,17 @@ public class PlayerMovement  implements KeyListener {
                 }
                 break;
         }
+        if(player.getYIndex()==rowCol-1 && player.getXIndex()==rowCol-1){
+            System.out.println("ciel");
+            player.setXIndex(0);
+            player.setYIndex(0);
+            player.setLocation(1,1);
+            createMaze.createMaze();
+            maze=createMaze.getMaze();
+            paintGamePanel.setMaze(createMaze.getMaze());
+            paintGamePanel.repaint();
 
+        }
 
     }
 

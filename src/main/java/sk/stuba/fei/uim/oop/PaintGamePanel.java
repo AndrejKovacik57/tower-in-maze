@@ -24,6 +24,7 @@ public class PaintGamePanel extends JPanel {
         createMazePanel();
     }
 
+
     public void createMazePanel(){
         this.setPreferredSize(new Dimension(panelSize, panelSize+1));
         this.setLayout(null);
@@ -38,7 +39,7 @@ public class PaintGamePanel extends JPanel {
 
 
     @Override
-    public void paint(Graphics g) {
+    public void paintComponent(Graphics g) {
          Graphics2D g2D = (Graphics2D)g;
          g2D.setStroke(new BasicStroke(gridSize));
          g2D.setColor(Color.CYAN);

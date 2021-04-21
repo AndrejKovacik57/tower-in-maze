@@ -10,8 +10,8 @@ public class MyFrame extends JFrame{
     private CreateMaze maze;
     private PaintGamePanel paintMaze;
     private ButtonAndCounterPanel buttonPanel;
-    private PlayerMovement playerMovementKeyboard;
-    public MyFrame(int frameWidth, int frameHeight, CreateMaze maze, PaintGamePanel paintMaze, ButtonAndCounterPanel buttonPanel, PlayerMovement playerMovementKeyboard){
+    private KeyboardMovement playerMovementKeyboard;
+    public MyFrame(int frameWidth, int frameHeight, CreateMaze maze, PaintGamePanel paintMaze, ButtonAndCounterPanel buttonPanel, KeyboardMovement playerMovementKeyboard){
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
         this.maze = maze;
@@ -22,8 +22,8 @@ public class MyFrame extends JFrame{
     }
 
 
+
     public void createFrame(){
-        //this.setSize(frameWidth, frameHeight);
         this.setPreferredSize(new Dimension(frameWidth, frameHeight));
         this.setTitle("Maze game");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

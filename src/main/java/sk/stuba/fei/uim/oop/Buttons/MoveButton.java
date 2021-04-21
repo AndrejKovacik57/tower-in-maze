@@ -1,6 +1,8 @@
 package sk.stuba.fei.uim.oop.Buttons;
 
 import sk.stuba.fei.uim.oop.Cell;
+import sk.stuba.fei.uim.oop.CreateMaze;
+import sk.stuba.fei.uim.oop.PaintGamePanel;
 import sk.stuba.fei.uim.oop.Player;
 
 import javax.swing.*;
@@ -15,8 +17,10 @@ public class MoveButton extends JButton implements ActionListener {
     private int buttonHeight;
     private int buttonWidth;
     private int cellSize;
+    private CreateMaze createMaze;
     private ArrayList<Cell>[][]maze;
     private Player player ;
+    private PaintGamePanel paintGamePanel;
 
     public MoveButton() {
         this.addActionListener(this);
@@ -54,7 +58,13 @@ public class MoveButton extends JButton implements ActionListener {
         this.cellSize = cellSize;
     }
 
+    public CreateMaze getCreateMaze() {
+        return createMaze;
+    }
 
+    public void setCreateMaze(CreateMaze createMaze) {
+        this.createMaze = createMaze;
+    }
 
     public ArrayList<Cell>[][] getMaze() {
         return maze;
@@ -72,6 +82,13 @@ public class MoveButton extends JButton implements ActionListener {
         this.player = player;
     }
 
+    public PaintGamePanel getPaintGamePanel() {
+        return paintGamePanel;
+    }
+
+    public void setPaintGamePanel(PaintGamePanel paintGamePanel) {
+        this.paintGamePanel = paintGamePanel;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {

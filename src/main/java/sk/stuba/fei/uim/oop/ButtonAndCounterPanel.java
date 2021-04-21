@@ -15,20 +15,20 @@ public class ButtonAndCounterPanel extends JPanel {
     private ResetButton reset;
     private ResetButton iii;
     private int cellSize;
-    private ArrayList<Cell>[][]maze;
+    private CreateMaze createMaze;
     private Player player ;
 
 
-    public ButtonAndCounterPanel(int panelWidth, int panelHeight,int rowCol, int cellSize, ArrayList<Cell>[][] maze, Player player) {
+    public ButtonAndCounterPanel(int panelWidth, int panelHeight,int rowCol, int cellSize, CreateMaze createMaze, Player player, PaintGamePanel paintGamePanel) {
         this.panelWidth = panelWidth;
         this.panelHeight = panelHeight;
         this.cellSize = cellSize;
-        this.maze = maze;
+        this.createMaze = createMaze;
         this.player = player;
-        moveUp=new ButtonUp("Up",190,45,cellSize,maze,player);
-        moveDown=new ButtonDown("Down",190,45,cellSize,maze,player);
-        moveLeft=new ButtonLeft("Left",190,45,cellSize,maze,player);
-        moveRight=new ButtonRight("Right",190,45,cellSize,maze,player);
+        moveUp=new ButtonUp("Up",190,45,cellSize,createMaze,player,paintGamePanel);
+        moveDown=new ButtonDown("Down",190,45,cellSize,createMaze,player,paintGamePanel);
+        moveLeft=new ButtonLeft("Left",190,45,cellSize,createMaze,player,paintGamePanel);
+        moveRight=new ButtonRight("Right",190,45,cellSize,createMaze,player,paintGamePanel);
         reset=new ResetButton("Reset",190,45);
         iii=new ResetButton("Reset",190,45);
         createButtonAndCounterPanel();

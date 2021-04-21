@@ -18,11 +18,14 @@ public class CreateMaze {
 
     }
 
+
+
     public ArrayList<Cell>[][] getMaze() {
         return maze;
     }
 
     public void createMaze(){
+
         maze = new ArrayList[columns][rows];
         for (int x=0; x<rows;x++){
 
