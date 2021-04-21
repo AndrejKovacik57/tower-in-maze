@@ -1,49 +1,53 @@
 package sk.stuba.fei.uim.oop;
-
-import sk.stuba.fei.uim.oop.Buttons.MoveButton;
-import sk.stuba.fei.uim.oop.Buttons.ResetButton;
+import sk.stuba.fei.uim.oop.Buttons.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ButtonAndCounterPanel extends JPanel {
     private int panelWidth;
-    private int panelHight;
-    private MoveButton moveUp;
-    private MoveButton moveDown;
-    private MoveButton moveLeft;
-    private MoveButton moveRight;
+    private int panelHeight;
+    private ButtonUp moveUp;
+    private ButtonDown moveDown;
+    private ButtonLeft moveLeft;
+    private ButtonRight moveRight;
     private ResetButton reset;
-    private MoveButton iii;
-    public ButtonAndCounterPanel(int panelWidth, int panelHight) {
-        this.panelWidth=panelWidth;
-        this.panelHight=panelHight;
-        moveUp=new MoveButton("Up",190,40);
-        moveDown=new MoveButton("Down",190,40);
-        moveLeft=new MoveButton("Left",190,40);
-        moveRight=new MoveButton("Right",190,40);
-        reset=new ResetButton("reset",190,40);
-        iii=new MoveButton("iii",190,40);
+    private ResetButton iii;
+    private int cellSize;
+    private ArrayList<Cell>[][]maze;
+    private Player player ;
+
+
+    public ButtonAndCounterPanel(int panelWidth, int panelHeight,int rowCol, int cellSize, ArrayList<Cell>[][] maze, Player player) {
+        this.panelWidth = panelWidth;
+        this.panelHeight = panelHeight;
+        this.cellSize = cellSize;
+        this.maze = maze;
+        this.player = player;
+        moveUp=new ButtonUp("Up",190,45,cellSize,maze,player);
+        moveDown=new ButtonDown("Down",190,45,cellSize,maze,player);
+        moveLeft=new ButtonLeft("Left",190,45,cellSize,maze,player);
+        moveRight=new ButtonRight("Right",190,45,cellSize,maze,player);
+        reset=new ResetButton("Reset",190,45);
+        iii=new ResetButton("Reset",190,45);
         createButtonAndCounterPanel();
     }
 
+
     public void createButtonAndCounterPanel(){
-
-        this.setSize(panelWidth,panelHight);
+        this.setPreferredSize(new Dimension(panelWidth, panelHeight));
         this.setBackground(Color.GRAY);
-
-        this.add(iii);
-        this.add(moveUp);
         this.add(reset);
+        this.add(moveUp);
+        this.add(iii);
         this.add(moveLeft);
         this.add(moveDown);
         this.add(moveRight);
 
 
+
+
     }
-    @Override
-    public Dimension getPreferredSize()
-    {
-        return new Dimension(600, 100);
-    }
+
 }

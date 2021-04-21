@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ResetButton extends Button implements ActionListener {
+public class ResetButton extends MoveButton implements ActionListener {
     public ResetButton(String name,int buttonWidth,int buttonHeight ) {
         setName(name);
         setButtonHeight(buttonHeight);
