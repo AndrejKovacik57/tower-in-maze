@@ -13,7 +13,11 @@ public class Player extends Label {
         createPlayerLabel();
     }
     public void createPlayerLabel(){
-        this.setBounds(1,1,playerSize,playerSize);
+        this.setSize(playerSize, playerSize);
+
+        this.setLocation(1,1);
+        this.setFocusable(false);
+        this.setVisible(true);
 
     }
 
@@ -33,6 +37,7 @@ public class Player extends Label {
     public void setYIndex(int yIndex) {
         this.yIndex = yIndex;
     }
+
 
     @Override
     public void paint(Graphics g) {

@@ -10,13 +10,14 @@ public class KeyboardMovement implements KeyListener {
     private Player player ;
     private CreateMaze createMaze;
     private PaintGamePanel paintGamePanel;
-
-    public KeyboardMovement(int cellSize, int rowCol, Player player, CreateMaze createMaze, PaintGamePanel paintGamePanel) {
+    private SolvedMazeCounter counter;
+    public KeyboardMovement(int cellSize, int rowCol, Player player, CreateMaze createMaze,SolvedMazeCounter counter,PaintGamePanel paintGamePanel) {
         this.cellSize = cellSize;
         this.rowCol=rowCol;
         this.maze = createMaze.getMaze();
         this.player = player;
         this.createMaze=createMaze;
+        this.counter=counter;
         this.paintGamePanel=paintGamePanel;
     }
 
@@ -61,6 +62,8 @@ public class KeyboardMovement implements KeyListener {
             createMaze.createMaze();
             maze=createMaze.getMaze();
             paintGamePanel.setMaze(createMaze.getMaze());
+            counter.setCounter(counter.getCounter()+1);
+            counter.repaint();
             paintGamePanel.repaint();
 
         }
