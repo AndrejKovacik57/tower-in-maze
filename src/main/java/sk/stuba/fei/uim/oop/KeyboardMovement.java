@@ -55,7 +55,7 @@ public class KeyboardMovement implements KeyListener {
                 break;
         }
         if(player.getYIndex()==rowCol-1 && player.getXIndex()==rowCol-1){
-            System.out.println("ciel");
+
             player.setXIndex(0);
             player.setYIndex(0);
             player.setLocation(1,1);

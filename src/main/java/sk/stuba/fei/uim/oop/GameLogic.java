@@ -12,7 +12,7 @@ public class GameLogic {
     private ButtonAndCounterPanel buttonAndCounterPanel;
     private SolvedMazeCounter counter;
     public GameLogic() {
-        rowCol = 11;
+        rowCol = 12;
         width = 600;
         cellSize = width/rowCol;
         createGame();
