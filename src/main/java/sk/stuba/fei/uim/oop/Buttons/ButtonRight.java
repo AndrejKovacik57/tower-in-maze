@@ -37,15 +37,15 @@ public class ButtonRight extends MoveButton{
     public void actionPerformed(ActionEvent e) {
 
         setMaze(getCreateMaze().getMaze());
-        if(!getMaze()[getPlayer().getXIndex()][getPlayer().getYIndex()].get(0).isRightWall()){
-            getPlayer().setLocation(getPlayer().getX()+getCellSize(),getPlayer().getY());
-            getPlayer().setXIndex(getPlayer().getXIndex()+1);
+        if(!getMaze()[getPlayer().getX()][getPlayer().getY()].get(0).isRightWall()){
+            getPlayer().setX(getPlayer().getX()+1);
+            getPaintGamePanel().repaint();
         }
-        if(getPlayer().getYIndex()==getRowCols()-1 && getPlayer().getXIndex()==getRowCols()-1){
+        if(getPlayer().getY()==getRowCols()-1 && getPlayer().getX()==getRowCols()-1){
 
-            getPlayer().setLocation(1,1);
-            getPlayer().setXIndex(0);
-            getPlayer().setYIndex(0);
+
+            getPlayer().setX(0);
+            getPlayer().setY(0);
             getCreateMaze().createMaze();
             setMaze(getCreateMaze().getMaze());
             getPaintGamePanel().setMaze(getCreateMaze().getMaze());

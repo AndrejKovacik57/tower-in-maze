@@ -9,17 +9,17 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-public class MoveButton extends JButton implements ActionListener {
-    private String name;
-    private int buttonHeight;
-    private int buttonWidth;
-    private int cellSize;
-    private int rowCols;
-    private CreateMaze createMaze;
-    private ArrayList<Cell>[][]maze;
-    private Player player ;
-    private PaintGamePanel paintGamePanel;
-    private SolvedMazeCounter counter;
+abstract class MoveButton extends JButton implements ActionListener {
+    protected String name;
+    protected int buttonHeight;
+    protected int buttonWidth;
+    protected int cellSize;
+    protected int rowCols;
+    protected CreateMaze createMaze;
+    protected ArrayList<Cell>[][]maze;
+    protected Player player ;
+    protected PaintGamePanel paintGamePanel;
+    protected SolvedMazeCounter counter;
 
     public MoveButton() {
         this.addActionListener(this);

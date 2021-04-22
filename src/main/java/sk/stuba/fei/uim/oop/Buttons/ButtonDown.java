@@ -37,15 +37,15 @@ public class ButtonDown extends MoveButton {
     @Override
     public void actionPerformed(ActionEvent e) {
         setMaze(getCreateMaze().getMaze());
-        if(!getMaze()[getPlayer().getXIndex()][getPlayer().getYIndex()].get(0).isBottomWall()){
-            getPlayer().setLocation(getPlayer().getX(),getPlayer().getY()+getCellSize());
-            getPlayer().setYIndex(getPlayer().getYIndex()+1);
+        if(!getMaze()[getPlayer().getX()][getPlayer().getY()].get(0).isBottomWall()){
+            getPlayer().setY(getPlayer().getY()+1);
+            getPaintGamePanel().repaint();
         }
-        if(getPlayer().getYIndex()==getRowCols()-1 && getPlayer().getXIndex()==getRowCols()-1){
+        if(getPlayer().getY()==getRowCols()-1 && getPlayer().getX()==getRowCols()-1){
 
-            getPlayer().setLocation(1,1);
-            getPlayer().setXIndex(0);
-            getPlayer().setYIndex(0);
+
+            getPlayer().setX(0);
+            getPlayer().setY(0);
             getCreateMaze().createMaze();
             setMaze(getCreateMaze().getMaze());
             getPaintGamePanel().setMaze(getCreateMaze().getMaze());

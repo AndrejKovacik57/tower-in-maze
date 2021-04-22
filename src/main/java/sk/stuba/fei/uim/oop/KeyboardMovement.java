@@ -30,35 +30,43 @@ public class KeyboardMovement implements KeyListener {
         switch (e.getKeyChar()){
             case 'w':
 
-                if(!maze[player.getXIndex()][player.getYIndex()].get(0).isTopWall()){
-                    player.setLocation(player.getX(),player.getY()-cellSize);
-                    player.setYIndex(player.getYIndex()-1);
+                if(!maze[player.getX()][player.getY()].get(0).isTopWall()){
+
+                    System.out.println("w");
+                    player.setY(player.getY()-1);
+                    paintGamePanel.repaint();
+
                 }
                 break;
             case 's':
-                if(!maze[player.getXIndex()][player.getYIndex()].get(0).isBottomWall()){
-                    player.setLocation(player.getX(),player.getY()+cellSize);
-                    player.setYIndex(player.getYIndex()+1);
+                if(!maze[player.getX()][player.getY()].get(0).isBottomWall()){
+                    System.out.println("s");
+                    player.setY(player.getY()+1);
+                    paintGamePanel.repaint();
+
                 }
                 break;
             case 'a':
-                if(!maze[player.getXIndex()][player.getYIndex()].get(0).isLeftWall()){
-                    player.setLocation(player.getX()-cellSize,player.getY());
-                    player.setXIndex(player.getXIndex()-1);
+                if(!maze[player.getX()][player.getY()].get(0).isLeftWall()){
+                    System.out.println("a");
+                    player.setX(player.getX()-1);
+                    paintGamePanel.repaint();
+
                 }
                 break;
             case 'd':
-                if(!maze[player.getXIndex()][player.getYIndex()].get(0).isRightWall()){
-                    player.setLocation(player.getX()+cellSize,player.getY());
-                    player.setXIndex(player.getXIndex()+1);
+                if(!maze[player.getX()][player.getY()].get(0).isRightWall()){
+                    System.out.println("d");
+                    player.setX(player.getX()+1);
+                    paintGamePanel.repaint();
+
                 }
                 break;
         }
-        if(player.getYIndex()==rowCol-1 && player.getXIndex()==rowCol-1){
+        if(player.getY()==rowCol-1 && player.getX()==rowCol-1){
 
-            player.setXIndex(0);
-            player.setYIndex(0);
-            player.setLocation(1,1);
+            player.setX(0);
+            player.setY(0);
             createMaze.createMaze();
             maze=createMaze.getMaze();
             paintGamePanel.setMaze(createMaze.getMaze());

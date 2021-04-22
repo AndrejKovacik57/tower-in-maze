@@ -12,8 +12,9 @@ public class PaintGamePanel extends JPanel {
     private  int cellSize;
     private ArrayList<Cell>[][]maze;
     private Player player;
+    private MouseMovement mouseMovement;
 
-    public PaintGamePanel(int gridSize, int panelSize, int rows, int columns, int cellSize, ArrayList<Cell>[][] maze ,Player player) {
+    public PaintGamePanel(int gridSize, int panelSize, int rows, int columns, int cellSize, ArrayList<Cell>[][] maze ,Player player,MouseMovement mouseMovement) {
         this.gridSize = gridSize;
         this.panelSize = panelSize;
         this.rows = rows;
@@ -21,16 +22,25 @@ public class PaintGamePanel extends JPanel {
         this.cellSize = cellSize;
         this.maze = maze;
         this.player=player;
+        this.mouseMovement=mouseMovement;
         createMazePanel();
     }
 
 
     public void createMazePanel(){
         this.setPreferredSize(new Dimension(panelSize, panelSize+1));
+       // this.add(player);
         this.setLayout(null);
-        this.setFocusable(true);
-        this.add(player);
 
+        //this.addMouseListener(mouseMovement);
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public void setMaze(ArrayList<Cell>[][] maze) {
@@ -38,7 +48,7 @@ public class PaintGamePanel extends JPanel {
     }
 
 
-    @Override
+   @Override
     public void paintComponent(Graphics g) {
          Graphics2D g2D = (Graphics2D)g;
          g2D.setStroke(new BasicStroke(gridSize));
@@ -67,6 +77,8 @@ public class PaintGamePanel extends JPanel {
                  }
              }
          }
+       g2D.setColor(Color.ORANGE);
+       g2D.fillOval(player.getX()*cellSize, player.getY()*cellSize, player.getPlayerSize(), player.getPlayerSize());
      }
 
 

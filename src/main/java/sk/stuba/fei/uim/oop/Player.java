@@ -1,50 +1,37 @@
 package sk.stuba.fei.uim.oop;
 
-import java.awt.*;
-
-public class Player extends Label {
+public class Player {
     private int playerSize;
-    private int xIndex;
-    private int yIndex;
+    private int x;
+    private int y;
+
     public Player(int playerSize,int x,int y) {
         this.playerSize=playerSize;
-        this.xIndex=x;
-        this.yIndex=y;
-        createPlayerLabel();
-    }
-    public void createPlayerLabel(){
-        this.setSize(playerSize, playerSize);
+        this.x=x;
+        this.y=y;
 
-        this.setLocation(1,1);
-        this.setFocusable(false);
-        this.setVisible(true);
 
     }
 
 
-    public int getXIndex() {
-        return xIndex;
+    public int getPlayerSize() {
+        return playerSize;
     }
 
-    public void setXIndex(int xIndex) {
-        this.xIndex = xIndex;
+    public int getX() {
+        return x;
     }
 
-    public int getYIndex() {
-        return yIndex;
+    public void setX(int x) {
+        this.x = x;
     }
 
-    public void setYIndex(int yIndex) {
-        this.yIndex = yIndex;
+    public int getY() {
+        return y;
     }
 
-
-    @Override
-    public void paint(Graphics g) {
-        Graphics2D g2D = (Graphics2D)g;
-        g2D.setColor(Color.CYAN);
-        g2D.fillRect(0,0,playerSize,playerSize);
-        g2D.setColor(Color.ORANGE);
-        g2D.fillOval(0,0,playerSize,playerSize);
+    public void setY(int y) {
+        this.y = y;
     }
+
 }

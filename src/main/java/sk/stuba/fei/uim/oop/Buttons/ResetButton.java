@@ -33,15 +33,14 @@ public class ResetButton extends MoveButton implements ActionListener {
         this.setVisible(true);
 
 
-
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        getPlayer().setLocation(1,1);
-        getPlayer().setXIndex(0);
-        getPlayer().setYIndex(0);
+
+        getPlayer().setX(0);
+        getPlayer().setY(0);
         getCreateMaze().createMaze();
         setMaze(getCreateMaze().getMaze());
         getPaintGamePanel().setMaze(getCreateMaze().getMaze());
