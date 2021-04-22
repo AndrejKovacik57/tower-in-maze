@@ -32,7 +32,7 @@ public class KeyboardMovement implements KeyListener {
 
                 if(!maze[player.getX()][player.getY()].get(0).isTopWall()){
 
-                    System.out.println("w");
+
                     player.setY(player.getY()-1);
                     paintGamePanel.repaint();
 
@@ -40,7 +40,7 @@ public class KeyboardMovement implements KeyListener {
                 break;
             case 's':
                 if(!maze[player.getX()][player.getY()].get(0).isBottomWall()){
-                    System.out.println("s");
+
                     player.setY(player.getY()+1);
                     paintGamePanel.repaint();
 
@@ -48,7 +48,7 @@ public class KeyboardMovement implements KeyListener {
                 break;
             case 'a':
                 if(!maze[player.getX()][player.getY()].get(0).isLeftWall()){
-                    System.out.println("a");
+
                     player.setX(player.getX()-1);
                     paintGamePanel.repaint();
 
@@ -56,7 +56,7 @@ public class KeyboardMovement implements KeyListener {
                 break;
             case 'd':
                 if(!maze[player.getX()][player.getY()].get(0).isRightWall()){
-                    System.out.println("d");
+
                     player.setX(player.getX()+1);
                     paintGamePanel.repaint();
 
