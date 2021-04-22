@@ -1,7 +1,7 @@
 package sk.stuba.fei.uim.oop;
 
-public class GameLogic {
-    private int rowCol= 4;
+public class Game {
+    private int rowCol= 12;
     private int width= 600;
     private int cellSize= width/rowCol;
     private CreateMaze maze;
@@ -13,7 +13,7 @@ public class GameLogic {
     private ButtonAndCounterPanel buttonAndCounterPanel;
     private SolvedMazeCounter counter;
 
-    public GameLogic() {
+    public Game() {
 
         createGame();
         
