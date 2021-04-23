@@ -2,7 +2,7 @@ package sk.stuba.fei.uim.oop.Buttons;
 
 
 import sk.stuba.fei.uim.oop.CreateMaze;
-import sk.stuba.fei.uim.oop.PaintGamePanel;
+import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.SolvedMazeCounter;
 
@@ -10,18 +10,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 
 
-public class ButtonLeft extends MoveButton{
+public class ButtonLeft extends Button {
 
-    public ButtonLeft(String name, int buttonWidth, int buttonHeight , int cellSize, CreateMaze maze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter counter, int rowCols) {
+    public ButtonLeft(String name, int buttonWidth, int buttonHeight , CreateMaze maze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter, int rowCols) {
         setName(name);
         setButtonHeight(buttonHeight);
         setButtonWidth(buttonWidth);
-        setCellSize(cellSize);
         setMaze(maze.getMaze());
         setCreateMaze(maze);
         setPlayer(player);
         setPaintGamePanel(paintGamePanel);
-        setCounter(counter);
+        setSolvedMazeCounter(solvedMazeCounter);
         setRowCols(rowCols);
         createButton();
     }
@@ -47,11 +46,11 @@ public class ButtonLeft extends MoveButton{
 
             getPlayer().setX(0);
             getPlayer().setY(0);
-            getCreateMaze().createMaze();
+            getCreateMaze().newMaze();
             setMaze(getCreateMaze().getMaze());
             getPaintGamePanel().setMaze(getCreateMaze().getMaze());
-            getCounter().setCounter(getCounter().getCounter()+1);
-            getCounter().repaint();
+            getSolvedMazeCounter().setCounter(getSolvedMazeCounter().getCounter()+1);
+            getSolvedMazeCounter().repaint();
             getPaintGamePanel().repaint();
 
         }

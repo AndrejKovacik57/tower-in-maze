@@ -1,6 +1,7 @@
 package sk.stuba.fei.uim.oop.Buttons;
 
 import sk.stuba.fei.uim.oop.*;
+import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 
 import javax.swing.*;
 
@@ -9,19 +10,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 
-abstract class MoveButton extends JButton implements ActionListener {
+abstract class Button extends JButton implements ActionListener {
     protected String name;
     protected int buttonHeight;
     protected int buttonWidth;
-    protected int cellSize;
+
     protected int rowCols;
     protected CreateMaze createMaze;
     protected ArrayList<Cell>[][]maze;
     protected Player player ;
     protected PaintGamePanel paintGamePanel;
-    protected SolvedMazeCounter counter;
+    protected SolvedMazeCounter solvedMazeCounter;
 
-    public MoveButton() {
+    public Button() {
         this.addActionListener(this);
     }
 
@@ -47,14 +48,6 @@ abstract class MoveButton extends JButton implements ActionListener {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getCellSize() {
-        return cellSize;
-    }
-
-    public void setCellSize(int cellSize) {
-        this.cellSize = cellSize;
     }
 
     public int getRowCols() {
@@ -97,12 +90,12 @@ abstract class MoveButton extends JButton implements ActionListener {
         this.paintGamePanel = paintGamePanel;
     }
 
-    public SolvedMazeCounter getCounter() {
-        return counter;
+    public SolvedMazeCounter getSolvedMazeCounter() {
+        return solvedMazeCounter;
     }
 
-    public void setCounter(SolvedMazeCounter counter) {
-        this.counter = counter;
+    public void setSolvedMazeCounter(SolvedMazeCounter solvedMazeCounter) {
+        this.solvedMazeCounter = solvedMazeCounter;
     }
 
     @Override

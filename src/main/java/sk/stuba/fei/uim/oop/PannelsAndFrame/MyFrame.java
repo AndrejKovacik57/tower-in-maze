@@ -1,4 +1,7 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.PannelsAndFrame;
+
+import sk.stuba.fei.uim.oop.KeyboardMovement;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,7 +18,6 @@ public class MyFrame extends JFrame{
         this.paintMaze = paintMaze;
         this.buttonPanel = buttonPanel;
         this.keyboardMovement = keyboardMovement;
-
 
         createFrame();
 

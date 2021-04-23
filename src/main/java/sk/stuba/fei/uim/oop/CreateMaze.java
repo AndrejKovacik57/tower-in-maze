@@ -14,7 +14,7 @@ public class CreateMaze {
     public CreateMaze(int rowColNum){
         this.rows=rowColNum;
         this.columns=rowColNum;
-        createMaze();
+        newMaze();
 
     }
 
@@ -24,7 +24,7 @@ public class CreateMaze {
         return maze;
     }
 
-    public void createMaze(){
+    public void newMaze(){
 
         maze = new ArrayList[columns][rows];
         for (int x=0; x<rows;x++){
@@ -114,3 +114,4 @@ public class CreateMaze {
 
 
 }
+

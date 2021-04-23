@@ -1,4 +1,9 @@
-package sk.stuba.fei.uim.oop;
+package sk.stuba.fei.uim.oop.PannelsAndFrame;
+
+import sk.stuba.fei.uim.oop.Cell;
+import sk.stuba.fei.uim.oop.CreateMaze;
+import sk.stuba.fei.uim.oop.Player;
+import sk.stuba.fei.uim.oop.SolvedMazeCounter;
 
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -20,19 +25,19 @@ public class PaintGamePanel extends JPanel implements MouseListener {
     private CreateMaze createMaze;
     private ArrayList<Cell>[][]maze;
     private Player player;
-    private SolvedMazeCounter counter;
+    private SolvedMazeCounter solvedMazeCounter;
 
 
-    public PaintGamePanel(int gridSize, int panelSize, int rows, int columns, int cellSize, CreateMaze createMaze ,Player player, SolvedMazeCounter counter) {
+    public PaintGamePanel(int gridSize, int panelSize, int rowCol, int cellSize, CreateMaze createMaze , Player player, SolvedMazeCounter solvedMazeCounter) {
         this.gridSize = gridSize;
         this.panelSize = panelSize;
-        this.rows = rows;
-        this.columns = columns;
+        this.rows = rowCol;
+        this.columns = rowCol;
         this.cellSize = cellSize;
         this.createMaze=createMaze;
         this.maze = createMaze.getMaze();
         this.player=player;
-        this.counter=counter;
+        this.solvedMazeCounter=solvedMazeCounter;
         possibleMovesSize=player.getPlayerSize()/2;
         createMazePanel();
     }
@@ -41,6 +46,7 @@ public class PaintGamePanel extends JPanel implements MouseListener {
     public void createMazePanel(){
         this.setPreferredSize(new Dimension(panelSize+1, panelSize+1));
         this.addMouseListener(this);
+
 
 
     }
@@ -69,7 +75,7 @@ public class PaintGamePanel extends JPanel implements MouseListener {
              for (int y=0; y<rows;y++){
 
                  g2D.setColor(Color.PINK);
-                 g2D.fillOval(maze[columns-1][rows-1].get(0).getXIndex()*cellSize,maze[columns-1][rows-1].get(0).getYIndex()*cellSize,cellSize-1,cellSize-1);
+                 g2D.fillOval(maze[columns-1][rows-1].get(0).getXIndex()*cellSize,maze[columns-1][rows-1].get(0).getYIndex()*cellSize,cellSize,cellSize);
 
                  g2D.setColor(Color.RED);
                  if(maze[x][y].get(0).isTopWall()){
@@ -132,30 +138,33 @@ public class PaintGamePanel extends JPanel implements MouseListener {
     public void mousePressed(MouseEvent e) {
 
         maze=createMaze.getMaze();
+        //klik na hraca zvyrazni
         if(e.getX()>= player.getX()*cellSize && e.getX()<=player.getX()*cellSize+cellSize && e.getY()>= player.getY()*cellSize && e.getY()<= player.getY()*cellSize+cellSize){
-
             player.setPlayerSelect(true);
             this.repaint();
-
         }
+        //pohyb hore
         else if(e.getX()>= player.getX()*cellSize && e.getX()<= player.getX()*cellSize+cellSize && player.getY()-e.getY()/cellSize<= moveUp && e.getY()/cellSize< player.getY()){
 
             player.setY(e.getY()/cellSize);
 
             this.repaint();
         }
+        //pohyb dole
         else if(e.getX()>= player.getX()*cellSize && e.getX()<= player.getX()*cellSize+cellSize && e.getY()/cellSize -player.getY()<= moveDown && e.getY()/cellSize> player.getY()){
 
             player.setY(e.getY()/cellSize);
 
             this.repaint();
         }
+        //pohyb do lava
         else if(e.getY()>= player.getY()*cellSize && e.getY()<= player.getY()*cellSize+cellSize && player.getX()-e.getX()/cellSize<= moveLeft && e.getX()/cellSize< player.getX()){
 
             player.setX(e.getX()/cellSize);
 
             this.repaint();
         }
+        //pohyb do prava
         else if(e.getY()>= player.getY()*cellSize && e.getY()<= player.getY()*cellSize+cellSize && e.getX()/cellSize-player.getX()<= moveRight && e.getX()/cellSize>player.getX()){
 
             player.setX(e.getX()/cellSize);
@@ -170,10 +179,10 @@ public class PaintGamePanel extends JPanel implements MouseListener {
 
             player.setX(0);
             player.setY(0);
-            createMaze.createMaze();
+            createMaze.newMaze();
             maze=createMaze.getMaze();
-            counter.setCounter(counter.getCounter()+1);
-            counter.repaint();
+            solvedMazeCounter.setCounter(solvedMazeCounter.getCounter()+1);
+            solvedMazeCounter.repaint();
             this.repaint();
 
         }

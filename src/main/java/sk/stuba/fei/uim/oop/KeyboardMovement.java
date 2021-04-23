@@ -1,18 +1,19 @@
 package sk.stuba.fei.uim.oop;
+import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
+
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class KeyboardMovement implements KeyListener {
-    private int cellSize;
     private int rowCol;
     private ArrayList<Cell>[][]maze;
     private Player player ;
     private CreateMaze createMaze;
     private PaintGamePanel paintGamePanel;
     private SolvedMazeCounter counter;
-    public KeyboardMovement(int cellSize, int rowCol, Player player, CreateMaze createMaze,SolvedMazeCounter counter,PaintGamePanel paintGamePanel) {
-        this.cellSize = cellSize;
+    public KeyboardMovement(int rowCol, Player player, CreateMaze createMaze, SolvedMazeCounter counter, PaintGamePanel paintGamePanel) {
+
         this.rowCol=rowCol;
         this.maze = createMaze.getMaze();
         this.player = player;
@@ -67,7 +68,7 @@ public class KeyboardMovement implements KeyListener {
 
             player.setX(0);
             player.setY(0);
-            createMaze.createMaze();
+            createMaze.newMaze();
             maze=createMaze.getMaze();
             paintGamePanel.setMaze(createMaze.getMaze());
             counter.setCounter(counter.getCounter()+1);

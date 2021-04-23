@@ -14,7 +14,7 @@ public class SolvedMazeCounter extends JLabel {
         createCounterLabel();
     }
     public void createCounterLabel(){
-        this.setPreferredSize(new Dimension(190,45));
+        this.setPreferredSize(new Dimension(width,height));
 
         this.setFocusable(false);
         this.setVisible(true);
@@ -34,6 +34,7 @@ public class SolvedMazeCounter extends JLabel {
         g2D.setColor(Color.GRAY);
         g2D.fillRect(1,1,width,height);
         g2D.setColor(Color.BLACK);
-        g2D.drawString("Solved mazes: "+counter,width/4,height/2);
+        g2D.drawString("Solved mazes: "+counter,width/2-width/8,height - height/4);
+
     }
 }

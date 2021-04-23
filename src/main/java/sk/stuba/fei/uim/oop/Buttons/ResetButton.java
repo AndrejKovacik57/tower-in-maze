@@ -1,7 +1,7 @@
 package sk.stuba.fei.uim.oop.Buttons;
 
 import sk.stuba.fei.uim.oop.CreateMaze;
-import sk.stuba.fei.uim.oop.PaintGamePanel;
+import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 import sk.stuba.fei.uim.oop.Player;
 import sk.stuba.fei.uim.oop.SolvedMazeCounter;
 
@@ -9,17 +9,16 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class ResetButton extends MoveButton implements ActionListener {
-    public ResetButton(String name, int buttonWidth, int buttonHeight , int cellSize, CreateMaze maze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter counter) {
+public class ResetButton extends Button implements ActionListener {
+    public ResetButton(String name, int buttonWidth, int buttonHeight , CreateMaze maze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter) {
         setName(name);
         setButtonHeight(buttonHeight);
         setButtonWidth(buttonWidth);
-        setCellSize(cellSize);
         setMaze(maze.getMaze());
         setCreateMaze(maze);
         setPlayer(player);
         setPaintGamePanel(paintGamePanel);
-        setCounter(counter);
+        setSolvedMazeCounter(solvedMazeCounter);
         createButton();
 
 
@@ -41,11 +40,11 @@ public class ResetButton extends MoveButton implements ActionListener {
 
         getPlayer().setX(0);
         getPlayer().setY(0);
-        getCreateMaze().createMaze();
+        getCreateMaze().newMaze();
         setMaze(getCreateMaze().getMaze());
         getPaintGamePanel().setMaze(getCreateMaze().getMaze());
-        getCounter().setCounter(0);
-        getCounter().repaint();
+        getSolvedMazeCounter().setCounter(0);
+        getSolvedMazeCounter().repaint();
         getPaintGamePanel().repaint();
 
     }
