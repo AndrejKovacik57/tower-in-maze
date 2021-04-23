@@ -9,12 +9,11 @@ import java.awt.*;
 
 
 public class ButtonAndCounterPanel extends JPanel {
-    private int panelWidth;
-    private int panelHeight;
-
-    private int rowCols;
-    private int componentWidth;
-    private int componentHeight;
+    private final int panelWidth;
+    private final int panelHeight;
+    private final int rowCols;
+    private final int componentWidth;
+    private final int componentHeight;
     private ButtonUp moveUp;
     private ButtonDown moveDown;
     private ButtonLeft moveLeft;
@@ -29,8 +28,8 @@ public class ButtonAndCounterPanel extends JPanel {
     public ButtonAndCounterPanel(int panelWidth, int panelHeight, CreateMaze createMaze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter, int rowCols) {
         this.panelWidth = panelWidth;
         this.panelHeight = panelHeight;
-        componentWidth=panelWidth/4-10;
-        componentHeight = panelHeight/2-10;
+        componentWidth=panelWidth/4;
+        componentHeight = panelHeight/2;
         this.createMaze = createMaze;
         this.paintGamePanel=paintGamePanel;
         this.player = player;

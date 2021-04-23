@@ -27,9 +27,9 @@ public class CreateMaze {
     public void newMaze(){
 
         maze = new ArrayList[columns][rows];
-        for (int x=0; x<rows;x++){
+        for (int x=0; x<columns;x++){
 
-            for (int y=0; y<columns;y++){
+            for (int y=0; y<rows;y++){
                 maze[x][y]=new ArrayList<Cell>();
                 maze[x][y].add(new Cell(false,true,true,true,true,x,y));
             }
@@ -37,10 +37,13 @@ public class CreateMaze {
         recursiveRandomDFS(maze[0][0].get(0));
     }
     public Cell checkIndex(int x, int y){
-        if(x>=0 && y>=0 && x<rows && y<columns  ){
+        if(x>=0 && y>=0 && x<columns  && y<rows ){
             return maze[x][y].get(0);
         }
-        return null;
+        else {
+            return null;
+        }
+
     }
     public ArrayList<Cell> getNeighbours(int x, int y){
         var neighbours = new ArrayList<Cell>();
@@ -97,7 +100,7 @@ public class CreateMaze {
 
     public void recursiveRandomDFS(Cell current){
         current.setVisited(true);
-        ArrayList<Cell> cellNeighbours= new ArrayList<Cell>();
+        var cellNeighbours= new ArrayList<Cell>();
         cellNeighbours=getNeighbours(current.getXIndex(),current.getYIndex());
         Cell nextCell = randomNeighbour(cellNeighbours);
         while (nextCell!=null){

@@ -50,9 +50,6 @@ public class Cell{
         return yIndex;
     }
 
-
-
-
     public void setVisited(boolean visited) {
         this.visited = visited;
     }

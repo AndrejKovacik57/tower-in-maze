@@ -1,7 +1,7 @@
 package sk.stuba.fei.uim.oop;
 
 public class Player {
-    private int playerSize;
+    private final int playerSize;
     private int x;
     private int y;
     private boolean playerSelect=false;

@@ -10,12 +10,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ResetButton extends Button implements ActionListener {
-    public ResetButton(String name, int buttonWidth, int buttonHeight , CreateMaze maze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter) {
+    public ResetButton(String name, int buttonWidth, int buttonHeight , CreateMaze createMaze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter) {
         setName(name);
         setButtonHeight(buttonHeight);
         setButtonWidth(buttonWidth);
-        setMaze(maze.getMaze());
-        setCreateMaze(maze);
+        setMaze(createMaze.getMaze());
+        setCreateMaze(createMaze);
         setPlayer(player);
         setPaintGamePanel(paintGamePanel);
         setSolvedMazeCounter(solvedMazeCounter);
@@ -36,8 +36,6 @@ public class ResetButton extends Button implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-
         getPlayer().setX(0);
         getPlayer().setY(0);
         getCreateMaze().newMaze();

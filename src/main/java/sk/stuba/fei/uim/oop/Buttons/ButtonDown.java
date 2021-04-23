@@ -11,12 +11,12 @@ import java.awt.event.ActionEvent;
 
 public class ButtonDown extends Button {
 
-    public ButtonDown(String name, int buttonWidth, int buttonHeight , CreateMaze maze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter, int rowCols) {
+    public ButtonDown(String name, int buttonWidth, int buttonHeight , CreateMaze createMaze, Player player, PaintGamePanel paintGamePanel, SolvedMazeCounter solvedMazeCounter, int rowCols) {
         setName(name);
         setButtonHeight(buttonHeight);
         setButtonWidth(buttonWidth);
-        setMaze(maze.getMaze());
-        setCreateMaze(maze);
+        setMaze(createMaze.getMaze());
+        setCreateMaze(createMaze);
         setPlayer(player);
         setPaintGamePanel(paintGamePanel);
         setSolvedMazeCounter(solvedMazeCounter);

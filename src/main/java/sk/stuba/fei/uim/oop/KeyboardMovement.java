@@ -6,7 +6,7 @@ import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 public class KeyboardMovement implements KeyListener {
-    private int rowCol;
+    private final int rowCol;
     private ArrayList<Cell>[][]maze;
     private Player player ;
     private CreateMaze createMaze;

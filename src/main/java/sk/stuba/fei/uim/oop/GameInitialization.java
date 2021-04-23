@@ -5,11 +5,10 @@ import sk.stuba.fei.uim.oop.PannelsAndFrame.MyFrame;
 import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 
 public class GameInitialization {
-    //pre uspensu zmenu width a rowcol musi byt width delitelne rowcol
-    private int rowCol= 12;
-    private int width= 600;
-    private int buttonPanelHeight=105;
-    private int cellSize= width/rowCol;
+    private final int rowCol= 12;
+    private final int width= 600;
+    private final int buttonPanelHeight=100;
+    private final int cellSize= width/rowCol;
     private CreateMaze maze;
     private Player player;
     private KeyboardMovement playerMovement;
@@ -24,10 +23,10 @@ public class GameInitialization {
         
     }
     public void createGame(){
-        solvedMazeCounter= new SolvedMazeCounter(width/4-10,buttonPanelHeight/2-10);
+        solvedMazeCounter= new SolvedMazeCounter(width/4,buttonPanelHeight/2);
         maze = new CreateMaze(rowCol);
-        player= new Player(cellSize,0,0);
-        paintMazePanel= new PaintGamePanel(1,width,rowCol,cellSize,maze,player,solvedMazeCounter);
+        player= new Player(cellSize-3,0,0);
+        paintMazePanel= new PaintGamePanel(width,rowCol,cellSize,maze,player,solvedMazeCounter);
         buttonAndCounterPanel=new ButtonAndCounterPanel(width,buttonPanelHeight,maze,player,paintMazePanel,solvedMazeCounter,rowCol);
         playerMovement = new KeyboardMovement(rowCol,player,maze,solvedMazeCounter,paintMazePanel);
         frame=new MyFrame(paintMazePanel,buttonAndCounterPanel,playerMovement);

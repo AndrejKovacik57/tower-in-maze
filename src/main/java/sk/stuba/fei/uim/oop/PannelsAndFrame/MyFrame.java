@@ -14,11 +14,9 @@ public class MyFrame extends JFrame{
     private KeyboardMovement keyboardMovement;
 
     public MyFrame(PaintGamePanel paintMaze, ButtonAndCounterPanel buttonPanel, KeyboardMovement keyboardMovement){
-
         this.paintMaze = paintMaze;
         this.buttonPanel = buttonPanel;
         this.keyboardMovement = keyboardMovement;
-
         createFrame();
 
     }

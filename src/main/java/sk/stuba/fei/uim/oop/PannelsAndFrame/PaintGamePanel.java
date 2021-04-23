@@ -12,24 +12,23 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 public class PaintGamePanel extends JPanel implements MouseListener {
-    private  int gridSize;
-    private  int panelSize ;
-    private  int rows;
-    private  int columns;
-    private  int cellSize;
+    private final int gridSize= 3;
+    private final int panelSize ;
+    private final int rows;
+    private final int columns;
+    private final int cellSize;
+    private final int possibleMovesSize;
     private int moveUp=0;
     private int moveDown=0;
     private int moveLeft=0;
     private int moveRight=0;
-    private int possibleMovesSize;
     private CreateMaze createMaze;
     private ArrayList<Cell>[][]maze;
     private Player player;
     private SolvedMazeCounter solvedMazeCounter;
 
 
-    public PaintGamePanel(int gridSize, int panelSize, int rowCol, int cellSize, CreateMaze createMaze , Player player, SolvedMazeCounter solvedMazeCounter) {
-        this.gridSize = gridSize;
+    public PaintGamePanel(int panelSize, int rowCol, int cellSize, CreateMaze createMaze , Player player, SolvedMazeCounter solvedMazeCounter) {
         this.panelSize = panelSize;
         this.rows = rowCol;
         this.columns = rowCol;
@@ -42,23 +41,18 @@ public class PaintGamePanel extends JPanel implements MouseListener {
         createMazePanel();
     }
 
-
     public void createMazePanel(){
         this.setPreferredSize(new Dimension(panelSize+1, panelSize+1));
         this.addMouseListener(this);
-
-
 
     }
 
     public Player getPlayer() {
         return player;
     }
-
     public void setPlayer(Player player) {
         this.player = player;
     }
-
     public void setMaze(ArrayList<Cell>[][] maze) {
         this.maze = maze;
     }
@@ -73,10 +67,10 @@ public class PaintGamePanel extends JPanel implements MouseListener {
 
          for (int x=0; x<columns;x++){
              for (int y=0; y<rows;y++){
-
+                //ciel
                  g2D.setColor(Color.PINK);
-                 g2D.fillOval(maze[columns-1][rows-1].get(0).getXIndex()*cellSize,maze[columns-1][rows-1].get(0).getYIndex()*cellSize,cellSize,cellSize);
-
+                 g2D.fillOval((columns-1)*cellSize+2,(rows-1)*cellSize+2,player.getPlayerSize(),player.getPlayerSize());
+                //bludisko
                  g2D.setColor(Color.RED);
                  if(maze[x][y].get(0).isTopWall()){
                      g2D.drawLine(maze[x][y].get(0).getXIndex()*cellSize, maze[x][y].get(0).getYIndex()*cellSize, maze[x][y].get(0).getXIndex()*cellSize+cellSize, maze[x][y].get(0).getYIndex()*cellSize);
@@ -93,34 +87,36 @@ public class PaintGamePanel extends JPanel implements MouseListener {
                  }
              }
          }
-
+        //hrac
        g2D.setColor(Color.ORANGE);
-       g2D.fillOval(player.getX()*cellSize, player.getY()*cellSize, player.getPlayerSize(), player.getPlayerSize());
+       g2D.fillOval(player.getX()*cellSize+2, player.getY()*cellSize+2, player.getPlayerSize(), player.getPlayerSize());
 
+       //mozny pohyb myskou
        if(player.isPlayerSelect()){
 
            g2D.setColor(Color.RED);
-           g2D.fillOval(player.getX()*cellSize, player.getY()*cellSize, player.getPlayerSize(), player.getPlayerSize());
+           g2D.fillOval(player.getX()*cellSize+2, player.getY()*cellSize+2, player.getPlayerSize(), player.getPlayerSize());
+
             moveDown=0;moveUp=0;moveLeft=0;moveRight=0;
            g2D.setColor(Color.YELLOW);
            for(int i=1; !maze[player.getX()][player.getY()-i+1].get(0).isTopWall();i++){
                moveUp++;
-               g2D.fillOval(player.getX()*cellSize+(cellSize/4), (player.getY()-i)*cellSize+(cellSize/4), possibleMovesSize, possibleMovesSize);
+               g2D.fillOval(player.getX()*cellSize+(cellSize/4)+2, (player.getY()-i)*cellSize+(cellSize/4)+2, possibleMovesSize, possibleMovesSize);
            }
 
            for(int i=1; !maze[player.getX()][player.getY()+i-1].get(0).isBottomWall();i++){
                moveDown++;
-               g2D.fillOval(player.getX()*cellSize+(cellSize/4), (player.getY()+i)*cellSize+(cellSize/4), possibleMovesSize, possibleMovesSize);
+               g2D.fillOval(player.getX()*cellSize+(cellSize/4)+2, (player.getY()+i)*cellSize+(cellSize/4)+2, possibleMovesSize, possibleMovesSize);
            }
 
            for(int i=1; !maze[player.getX()-i+1][player.getY()].get(0).isLeftWall();i++){
                moveLeft++;
-               g2D.fillOval((player.getX()-i)*cellSize+(cellSize/4), player.getY()*cellSize+(cellSize/4), possibleMovesSize, possibleMovesSize);
+               g2D.fillOval((player.getX()-i)*cellSize+(cellSize/4)+2, player.getY()*cellSize+(cellSize/4)+2, possibleMovesSize, possibleMovesSize);
            }
 
            for(int i=1; !maze[player.getX()+i-1][player.getY()].get(0).isRightWall();i++){
                moveRight++;
-               g2D.fillOval((player.getX()+i)*cellSize+(cellSize/4), player.getY()*cellSize+(cellSize/4), possibleMovesSize, possibleMovesSize);
+               g2D.fillOval((player.getX()+i)*cellSize+(cellSize/4)+2, player.getY()*cellSize+(cellSize/4)+2, possibleMovesSize, possibleMovesSize);
            }
 
            player.setPlayerSelect(false);
@@ -138,7 +134,7 @@ public class PaintGamePanel extends JPanel implements MouseListener {
     public void mousePressed(MouseEvent e) {
 
         maze=createMaze.getMaze();
-        //klik na hraca zvyrazni
+        //klik na hraca
         if(e.getX()>= player.getX()*cellSize && e.getX()<=player.getX()*cellSize+cellSize && e.getY()>= player.getY()*cellSize && e.getY()<= player.getY()*cellSize+cellSize){
             player.setPlayerSelect(true);
             this.repaint();
@@ -171,7 +167,7 @@ public class PaintGamePanel extends JPanel implements MouseListener {
 
             this.repaint();
         }
-
+        //klik inde
         else{
             this.repaint();
         }
