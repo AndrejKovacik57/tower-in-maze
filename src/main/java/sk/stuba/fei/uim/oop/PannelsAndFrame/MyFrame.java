@@ -27,7 +27,7 @@ public class MyFrame extends JFrame{
         this.addKeyListener(keyboardMovement);
         this.setVisible(true);
         this.setResizable(false);
-        this.add(paintMaze,BorderLayout.NORTH);
+        this.add(paintMaze,BorderLayout.CENTER);
         this.add(buttonPanel,BorderLayout.SOUTH);
         this.pack();
 
