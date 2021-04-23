@@ -8,8 +8,8 @@ public class Cell{
     private boolean bottomWall;
     private boolean leftWall;
     private boolean rightWall;
-    private int xIndex;
-    private int yIndex;
+    private final int xIndex;
+    private final int yIndex;
 
     public Cell(boolean visited, boolean topWall, boolean bottomWall, boolean leftWall, boolean rightWall, int xIndex, int yIndex) {
         this.visited = visited;

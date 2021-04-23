@@ -2,11 +2,9 @@ package sk.stuba.fei.uim.oop;
 import java.util.ArrayList;
 import java.util.Random;
 
-
-
 public class CreateMaze {
-    private int rows;
-    private int columns;
+    private final int rows;
+    private final int columns;
     private ArrayList<Cell>[][]maze;
     private Random rand=new Random();
 

@@ -5,7 +5,7 @@ import sk.stuba.fei.uim.oop.PannelsAndFrame.MyFrame;
 import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 
 public class GameInitialization {
-    //rowCol a width sa da zmenit ak width je delitelne rowCol
+    //rowCol a width sa da zmenit ak width je delitelne s rowCol
     private final int rowCol= 12;
     private final int width= 600;
     private final int buttonPanelHeight=100;
