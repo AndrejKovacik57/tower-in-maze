@@ -41,8 +41,6 @@ public class ButtonRight extends Button {
             getPaintGamePanel().repaint();
         }
         if(getPlayer().getY()==getRowCols()-1 && getPlayer().getX()==getRowCols()-1){
-
-
             getPlayer().setX(0);
             getPlayer().setY(0);
             getCreateMaze().newMaze();

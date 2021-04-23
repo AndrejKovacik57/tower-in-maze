@@ -4,7 +4,8 @@ import sk.stuba.fei.uim.oop.PannelsAndFrame.ButtonAndCounterPanel;
 import sk.stuba.fei.uim.oop.PannelsAndFrame.MyFrame;
 import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 
-public class Game {
+public class GameInitialization {
+    //pre uspensu zmenu width a rowcol musi byt width delitelne rowcol
     private int rowCol= 12;
     private int width= 600;
     private int buttonPanelHeight=105;
@@ -18,7 +19,7 @@ public class Game {
     private ButtonAndCounterPanel buttonAndCounterPanel;
     private SolvedMazeCounter solvedMazeCounter;
 
-    public Game() {
+    public GameInitialization() {
         createGame();
         
     }

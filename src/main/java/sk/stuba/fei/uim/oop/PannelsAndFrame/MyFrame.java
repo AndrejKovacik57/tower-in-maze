@@ -23,8 +23,6 @@ public class MyFrame extends JFrame{
 
     }
 
-
-
     public void createFrame(){
         this.setTitle("Maze game");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -36,12 +34,6 @@ public class MyFrame extends JFrame{
         this.pack();
 
 
-
-
     }
-
-
-
-
 
 }
