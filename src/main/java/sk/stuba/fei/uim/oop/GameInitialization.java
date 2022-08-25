@@ -6,7 +6,7 @@ import sk.stuba.fei.uim.oop.PannelsAndFrame.PaintGamePanel;
 
 public class GameInitialization {
     //rowCol a width sa da zmenit ak width je delitelne s rowCol
-    private final int rowCol= 12;
+    private final int rowCol= 6;
     private final int width= 600;
     private final int buttonPanelHeight=100;
     private final int cellSize= width/rowCol;
